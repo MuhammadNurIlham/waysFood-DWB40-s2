@@ -1,4 +1,252 @@
 .App {
+  background: #E5E5E5;
+}
+
+.top-page {
+  background-color: #FFC700;
+}
+
+.navbar-title {
+  font-family: Condensed;
+  font-size: 23px;
+  font-style: italic;
+  font-weight: bolder;
+  line-height: 28px;
+  letter-spacing: 0.01em;
+  text-align: left;
+}
+
+.left-title {
+  text-align: justify-end;
+  font-family: Abhaya Libre;
+  font-weight: bolder;
+  font-size: 50px;
+  line-height: 65px;
+}
+
+.title {
+  font-family: Abhaya Libre;
+  font-weight: bolder;
+}
+
+.radius {
+  font-family: Avenir;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19.12px;
+}
+
+.user-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px
+}
+
+.card-profile {
+  max-width: 540px;
+  background-color: #FFFFFF;
+  border: none;
+}
+
+.user-profile {
+  font-family: Avenir;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #613D2B;
+}
+
+.data-user {
+  font-family: Avenir;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #000000;
+}
+
+.menu-order {
+  font-family: Abhaya Libre ExtraBold;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #000000;
+}
+
+.date-order {
+  font-family: Avenir;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 12px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.caption-btn {
+  border: solid;
+  border: none;
+  border-radius: 8px;
+  background-color: #433434;
+  color: #FFFFFF;
+  font-family: Product Sans;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.caption-btn:hover {
+  background-color: #FFC700;
+  color: #000000;
+  cursor: pointer;
+}
+
+/* button */
+.btn-edit {
+  border: solid;
+  border: none;
+  border-radius: 7px;
+  background-color: #433434;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  color: #FFFFFF;
+  font-family: Product Sans;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.btn-edit:hover {
+  background-color: #FFC700;
+  color: #000000;
+  cursor: pointer;
+}
+
+.btn-agreement {
+  border: solid;
+  border: none;
+  border-radius: 8px;
+  font-family: Avenir;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #FFFFFF;
+}
+.btn-agreement:hover{
+  color: #000000;
+}
+
+.btn-order {
+  border: solid;
+  border: none;
+  border-radius: 8px;
+  font-family: Avenir;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color:#000000;
+}
+.btn-order:hover {
+  color: #FFFFFF;
+  background-color: #000000;
+}
+/* end Button */
+.color-brown {
+  color: #613D2B;
+}
+
+.table-chart {
+  border: #000000;
+}
+
+.input-qty {
+  border: solid;
+  border: none;
+  border-radius: 10px;
+  background-color: burlywood;
+}
+
+.img-order {
+  width: 20px;
+  height: 20px;
+}
+
+.addFile {
+  width: 25px;
+  height: 25px;
+}
+
+/* Set Style Font */
+.font-income {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+}
+.font-th{
+  font-weight: 700;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.rectangle {
+  background-color: #000000;
+  height: 2px;
+}
+
+.log-reg:hover {
+  color: #FFC700;
+  border: solid;
+  border-radius: 8px;
+  border: none;
+  background-color: #000000;
+  padding: 2px 10px;
+}
+
+.link {
+  text-decoration: none;
+  color:#000000
+} .link:hover {
+  color: #000000;
+}
+
+.btn-transparan {
+  border: none;
+  background-color: transparent;
+}
+
+.btn-add:hover {
+  background-color: rgb(2, 212, 2);
+  color: #FFFFFF;
+  border-radius: 8px;
+}
+
+.btn-less:hover {
+  background-color: rgb(255, 38, 38);
+  color: #FFFFFF;
+  border-radius: 8px;
+}
+
+.btn-equal {
+  border-radius: 8px;
+  color: #000000;
+  background-color: #E5E5E5;
+}
+/* End Set style Font */
+/* .form-control {
+  width: 5px !important;
+} */
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +283,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
