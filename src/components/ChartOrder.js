@@ -7,13 +7,21 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { CartReducer } from '../context/CartReducer';
 import { Alert } from 'react-bootstrap';
+import { totalItems } from 'react-use-cart'
+import { useCart } from 'react-use-cart';
+import { addItem } from 'react-use-cart';
 
 
 function ChartOrder() {
+    const { addItem } = useCart();
+    const { totalItems } = useCart();
+    console.log("ini total item", totalItems);
 
+    const { removeItem } = useCart();
     const handleOrder = () => {
         alert('Order Success')
     };
+
 
 
     return (
@@ -89,10 +97,9 @@ function ChartOrder() {
                                             -
                                         </button>
                                         <button className='py-1 px-2 mx-2 btn-transparan btn-equal fw-bold fs-5'>
-                                            0
-                                            {/* {totalCart.counter.length} */}
+                                            {totalItems}
                                         </button>
-                                        <button className='btn-add py-1 ps-2 btn-transparan fw-bold fs-5' onClick={() => Alert("Testt")}>
+                                        <button className='btn-add py-1 ps-2 btn-transparan fw-bold fs-5' onClick={() => addItem()}>
                                             +
                                         </button>
                                     </div>
@@ -104,7 +111,7 @@ function ChartOrder() {
                                 <div className='py-3 px-2'>
                                     <h6 className='py-1 text-danger'>Rp 15.000</h6>
                                     <div className='d-flex justify-content-end'>
-                                        <img src={hapus} alt='delete' className='py-2' onClick={() => Alert("test")}></img>
+                                        <img src={hapus} alt='delete' className='py-2' onClick={() => removeItem()}></img>
                                     </div>
                                 </div>
                             </div>

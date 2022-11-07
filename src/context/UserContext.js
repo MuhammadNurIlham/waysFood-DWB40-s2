@@ -4,27 +4,26 @@ export const UserContext = createContext();
 
 const initialState = {
     isLogin: false,
-    user: "",
-    password: "",
-    level: "",
+    user: {},
 };
 
-const reducer = (_, action) => {
-    const { type, payload, vallevel } = action;
+const reducer = (state, action) => {
+    const { type, payload } = action;
 
     switch (type) {
+        case "USER_SUCCESS":
         case "LOGIN_SUCCESS":
+            localStorage.setItem("token", payload.token)
             return {
                 isLogin: true,
                 user: payload,
-                password: payload,
-                level: vallevel,
             };
+        case "AUTH_ERROR":
         case "LOGOUT":
+            localStorage.removeItem("token");
             return {
                 isLogin: false,
-                user: "",
-                password: "",
+                user: {},
             };
         default:
             throw new Error();
@@ -32,10 +31,10 @@ const reducer = (_, action) => {
 };
 
 export const UsersContextProvider = ({ children }) => {
-    const [dataUser, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     return (
-        <UserContext.Provider value={[dataUser, dispatch]}>
+        <UserContext.Provider value={[state, dispatch]}>
             {children}
         </UserContext.Provider>
     );

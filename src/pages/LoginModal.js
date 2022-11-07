@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { Button, Form, Modal } from 'react-bootstrap';
+import { Button, Form, Modal, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from "@tanstack/react-query";
+import { API } from '../config/API';
 import { UserContext } from '../context/UserContext';
-import { DbUser } from '../Data-Dummy/DbUser';
+// import { DbUser } from '../Data-Dummy/DbUser';
 // import NavbarUser from '../NavbarUser';
 
 
@@ -11,9 +13,10 @@ function LoginModal({ show, setShow, setShowRegister }) {
     const handleShow = () => setShow(true);
 
     // init useContext
-    const [dataUser, dispatch] = useContext(UserContext);
+    const [state, dispatch] = useContext(UserContext);
 
     // useState
+    const [message, setMessage] = useState(null);
     const [form, setForm] = useState({
         email: "",
         password: "",
@@ -31,39 +34,35 @@ function LoginModal({ show, setShow, setShowRegister }) {
     // init useNavigate
     const navigate = useNavigate()
 
-    const handleOnSubmit = (e) => {
-        e.preventDefault()
+    const handleOnSubmit = useMutation(async (e) => {
+        try {
+            e.preventDefault()
+            const data = await API.post('/login', form);
+            const alert = <Alert variant='success'>Login Berhasil!</Alert>
+            setMessage(alert);
 
-        const DbUsers = DbUser.find((person) => person.email === form.email)
-        if (DbUsers) {
-            if (form.email === DbUsers.email && form.password === DbUsers.password && DbUsers.level === "user") {
-                dispatch({
-                    type: "LOGIN_SUCCESS",
-                    payload: form,
-                    isLogin: true,
-                    vallevel: "user",
-                });
-                setShow(false)
-                return navigate('/User')
-            } else if (form.email === DbUsers.email && form.password === DbUsers.password && DbUsers.level === "partner") {
-                dispatch({
-                    type: "LOGIN_SUCCESS",
-                    payload: form,
-                    isLogin: true,
-                    vallevel: "partner",
-                });
-                setShow(false)
-                return navigate('/IncomeTransaction')
-            } else {
-                return alert('Password salah')
+            let payload = data.data.data;
+            if (payload.role == "user") {
+                navigate('/UserProfile');
+            } else if (payload.role == "partner") {
+                navigate('/IncomeTransaction');
             }
-        } else {
-            return alert('Data tidak ditemukan')
+            dispatch({
+                type: "LOGIN_SUCCESS",
+                payload,
+            });
+
+            handleClose()
+
+            // navigate('/User')
+            console.log("isi payload", payload)
+            console.log("isi datanya", data);
+        } catch (e) {
+            console.log(e)
+            const alert = <Alert variant='danger'>Login Gagal!</Alert>
+            setMessage(alert);
         }
-
-    }
-
-
+    });
 
     return (
         <>
@@ -72,13 +71,14 @@ function LoginModal({ show, setShow, setShowRegister }) {
                     <Modal.Title>Login</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form onSubmit={handleOnSubmit}>
+                    {message && message}
+                    <Form onSubmit={(e) => handleOnSubmit.mutate(e)}>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Control
                                 onChange={handleOnChange}
                                 value={form.email}
                                 name='email'
-                                type='text'
+                                type='email'
                                 placeholder='Email'
                                 autoFocus
                                 required
@@ -88,15 +88,15 @@ function LoginModal({ show, setShow, setShowRegister }) {
                             <Form.Control
                                 name="password"
                                 type="password"
-                                onChange={handleOnChange}
                                 value={form.password}
+                                onChange={handleOnChange}
                                 placeholder="Password"
                                 required
                             />
                         </Form.Group>
                         {/* Button Form Login */}
                         <div className="d-grid gap-2">
-                            <Button variant="dark" size="md" type="submit">
+                            <Button variant="dark" size="md" type="submit" value={"Login"}>
                                 Login
                             </Button>
                         </div>
