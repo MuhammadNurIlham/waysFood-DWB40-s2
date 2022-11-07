@@ -2,7 +2,8 @@ import React from 'react'
 import axios from 'axios'
 
 export const API = axios.create({
-    baseURL: 'http://localhost:5000/api/v1/', //base url for API
+    // baseURL: 'http://localhost:5000/api/v1/', //base url for API
+    baseURL: 'https://waysfood-apps.herokuapp.com/api/v1/', //base url for API
 });
 
 
